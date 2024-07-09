@@ -30,7 +30,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install updates and dependencies
 RUN apt-get update && \
-    apt-get -y install cmake make gcc g++ pkg-config libfftw3-dev libmbedtls-dev libsctp-dev libyaml-cpp-dev libgtest-dev \
+    apt-get -y install cmake make gcc-12 g++-12 pkg-config libfftw3-dev libmbedtls-dev libsctp-dev libyaml-cpp-dev libgtest-dev \
     libzmq3-dev software-properties-common pkg-config net-tools iputils-ping git
 
 # UHD drivers for USRP
@@ -40,9 +40,9 @@ RUN add-apt-repository ppa:ettusresearch/uhd && \
 
 # Get srsRAN_Project, compile and install
 RUN git clone https://github.com/srsran/srsRAN_Project.git && \
-    cd srsRAN_Project && git checkout 55c984b55736d0dd2d2ee328f1ae8d9de97e3e19 && \
+    cd srsRAN_Project && \
     mkdir build && cd build && \
-    cmake ../ -DENABLE_EXPORT=ON -DENABLE_ZEROMQ=ON && make -j`nproc` && make install && \
+    cmake ../ -DCMAKE_C_COMPILER=gcc-12 -DCMAKE_CXX_COMPILER=g++-12 -DENABLE_EXPORT=ON -DENABLE_ZEROMQ=ON && make -j`nproc` && make install && \
     ldconfig
 
 ENV UHD_IMAGES_DIR=/usr/share/uhd/images/

@@ -40,7 +40,20 @@ pcap:
   f1ap_filename: /mnt/srsran/gnb_f1ap.pcap                                                    # Path where the F1AP PCAP is stored.
   e1ap_enable: false                                                                          # Set to true to enable E1AP PCAPs.
   e1ap_filename: /mnt/srsran/gnb_e1ap.pcap                                                    # Path where the E1AP PCAP is stored.
-  e2ap_enable: false                                                                          # Set to true to enable E2AP PCAPs.
+  e2ap_enable: true                                                                           # Set to true to enable E2AP PCAPs.
   e2ap_filename: /mnt/srsran/gnb_e2ap.pcap                                                    # Path where the E2AP PCAP is stored.
-  gtpu_enable: false                                                                          # Set to true to enable GTP-U PCAPs.
-  gtpu_filename: /mnt/srsran/gnb_gtpu.pcap                                                    # Path where the GTP-U PCAP is stored.
+
+e2:
+  enable_du_e2: 1  
+  addr: 172.22.0.210 
+  port: 36421              
+  bind_addr: 172.22.0.37    
+  e2sm_kpm_enabled: 1              
+  e2sm_rc_enabled: 1     
+            
+metrics:
+  rlc_report_period: 1000     
+  rlc_json_enable: 1
+  enable_json_metrics: 1
+  cu_cp_statistics_report_period: 1
+  cu_up_statistics_report_period: 1
