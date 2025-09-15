@@ -42,7 +42,7 @@ RUN add-apt-repository ppa:ettusresearch/uhd && \
 RUN git clone https://github.com/srsran/srsRAN_Project.git && \
     cd srsRAN_Project && git checkout 920ee6ecebfdfc8595165d4b42ebafca630854f7 && \
     mkdir build && cd build && \
-    cmake ../ -DENABLE_EXPORT=ON -DENABLE_ZEROMQ=ON && make -j`nproc` && make install && \
+    CXXFLAGS="-Wno-error=switch" cmake ../ -DENABLE_EXPORT=ON -DENABLE_ZEROMQ=ON && make -j`nproc` && make install && \
     ldconfig
 
 ENV UHD_IMAGES_DIR=/usr/share/uhd/images/
